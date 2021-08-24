@@ -5,33 +5,38 @@
 # Import randint to get random number
 from random import randint
 
+
 # Game object
 class Game:
-    # Object initialization
     def __init__(self):
+        """
+        This function initializes the game object.
+        """
         # Random number the user is trying to guess is between 1 and 100
         self.number = randint(1, 100)
         # The number of tries it takes the user to guess the number
         self.tries = 0
         # The high end guess by the user
-        self.highend = 100
+        self.high_end = 100
         # The low end guess by the user
-        self.lowend = 1
+        self.low_end = 1
 
-    # This function plays the game
     def play(self):
-        # The guess startes out of guessing range, this is to assign the variable
+        """
+        This function plays the game.
+        """
+        # The guess starts out of guessing range, this is to assign the variable
         guess = -1
         # Loop until the user guesses the number
         while guess != self.number:
             # Make sure that the user types an integer
             try:
-                guess = int(input(f"Guess the number {self.lowend}-{self.highend}: "))
+                guess = int(input(f"Guess the number {self.low_end}-{self.high_end}: "))
             except ValueError:
                 print("Your guess must be a number!")
             else:
                 # If the guess is out of range of the high and low end variables, have the user guess again
-                if self.lowend > guess  or guess > self.highend:
+                if self.low_end > guess or guess > self.high_end:
                     print("Guess out of range, try again.\n")
                     continue
                 # If the guess is in range increment the number of tries
@@ -47,16 +52,18 @@ class Game:
                 # If the guess is lower than the number adjust the low end number
                 elif guess < self.number:
                     print(f"The number is higher than {guess}\n")
-                    if guess > self.lowend:
-                        self.lowend = guess
+                    if guess > self.low_end:
+                        self.low_end = guess
                 # If the guess is higher than the number adjust the high end number
                 elif guess > self.number:
                     print(f"The number is lower than {guess}\n")
-                    if guess < self.highend:
-                        self.highend = guess
+                    if guess < self.high_end:
+                        self.high_end = guess
 
-    # This function prompts the user if they'd like to play again
     def play_again(self):
+        """
+        This function prompts the user if they'd like to play again.
+        """
         # Repeat the question until the user gives a valid response
         while True:
             play_again = input("Would you like to play again y/n?").lower()
@@ -73,14 +80,17 @@ class Game:
             else:
                 print("Incorrect format, please type either y for yes, or n for no, to play again.\n")
 
-    # This function resets the values in the game
     def reset(self):
+        """
+        This function resets the values in the game.
+        """
         self.number = randint(1, 100)
         self.tries = 0
-        self.highend = 100
-        self.lowend = 1
+        self.high_end = 100
+        self.low_end = 1
 
-# Creates the inital game object
-mygame = Game()
+
+# Creates the initial game object
+my_game = Game()
 # Start playing the game
-mygame.play()
+my_game.play()
