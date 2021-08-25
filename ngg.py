@@ -47,7 +47,7 @@ class Game:
             try:
                 guess = int(input(f"Guess the number {self.low_end}-{self.high_end}: "))
             except ValueError:
-                print("Your guess must be a number!")
+                print("Your guess must be a number!\n")
             else:
                 # If the guess is out of range of the high and low end variables, have the user guess again
                 if self.low_end > guess or guess > self.high_end:
