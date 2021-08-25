@@ -4,6 +4,20 @@
 
 # Import randint to get random number
 from random import randint
+# Import system and name in order to clear console for organizational purposes
+from os import system, name
+
+
+def clear():
+    """
+    This function produces a terminal clear dependent on which operating system you are using.
+    """
+    # If you are using a Windows system
+    if name == "nt":
+        _ = system("cls")
+    # If you are using a unix-based system
+    else:
+        _ = system("clear")
 
 
 # Game object
@@ -71,7 +85,7 @@ class Game:
             if play_again == "y":
                 self.reset()
                 # Adds an empty line between the old game and the new one
-                print()
+                clear()
                 self.play()
             # If the user types "n", quit
             elif play_again == "n":
@@ -90,7 +104,10 @@ class Game:
         self.low_end = 1
 
 
-# Creates the initial game object
-my_game = Game()
-# Start playing the game
-my_game.play()
+if __name__ == "__main__":
+    # Clear console of everything but the game
+    clear()
+    # Creates the initial game object
+    my_game = Game()
+    # Start playing the game
+    my_game.play()
